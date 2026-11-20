@@ -1,0 +1,138 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CollegeHub | Coursework</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- SIDEBAR -->
+    <aside class="sidebar">
+
+        <h2>CollegeHub<span>.</span></h2>
+        <p class="sidebar-label">MAIN MENU</p>
+
+        <nav>
+            <a href="index.html">▦ Dashboard</a>
+            <a href="assignments.html">▤ Assignments</a>
+            <a href="reminders.html">◷ Reminders</a>
+            <a class="active" href="coursework.html">▣ Coursework</a>
+            <a href="#">▥ Progress</a>
+        </nav>
+
+        <div class="sidebar-footer">
+            STUDENT PORTAL<br>
+            <span>Version 1.0</span>
+        </div>
+
+    </aside>
+
+    <!-- MAIN CONTENT -->
+    <main class="main-content">
+
+        <header>
+            <div>
+                <p class="eyebrow">STUDENT MANAGEMENT SYSTEM</p>
+                <h1>Coursework Manager</h1>
+                <p class="muted">Organise your units and track your coursework progress.</p>
+            </div>
+        </header>
+
+        <!-- STATISTICS -->
+        <section class="stats">
+
+            <div class="stat-card">
+                <p>TOTAL UNITS</p>
+                <h2 id="totalUnits">0</h2>
+            </div>
+
+            <div class="stat-card">
+                <p>IN PROGRESS</p>
+                <h2 id="activeUnits">0</h2>
+            </div>
+
+            <div class="stat-card">
+                <p>COMPLETED</p>
+                <h2 id="completedUnits">0</h2>
+            </div>
+
+        </section>
+
+        <!-- COURSEWORK -->
+        <section class="content-card">
+
+            <div class="section-heading">
+                <div>
+                    <h2>Your Coursework</h2>
+                    <p class="muted">Keep all your college units organised.</p>
+                </div>
+
+                <button id="addUnitBtn">+ Add Unit</button>
+            </div>
+
+            <!-- ADD UNIT FORM -->
+            <div id="unitForm" class="hidden">
+
+                <h3>Add a coursework unit</h3>
+
+                <form id="newUnit">
+
+                    <label>Unit name</label>
+                    <input
+                        type="text"
+                        id="unitName"
+                        placeholder="e.g. Unit 15 - UK Airports"
+                        required
+                    >
+
+                    <label>Subject</label>
+                    <input
+                        type="text"
+                        id="unitSubject"
+                        placeholder="e.g. Travel and Tourism"
+                        required
+                    >
+
+                    <label>Target grade</label>
+                    <select id="targetGrade" required>
+                        <option value="">Select target grade</option>
+                        <option value="Pass">Pass</option>
+                        <option value="Merit">Merit</option>
+                        <option value="Distinction">Distinction</option>
+                    </select>
+
+                    <label>Status</label>
+                    <select id="unitStatus" required>
+                        <option value="Not Started">Not Started</option>
+                        <option value="In Progress">In Progress</option>
+                        <option value="Completed">Completed</option>
+                    </select>
+
+                    <button type="submit">Save Unit</button>
+
+                </form>
+
+            </div>
+
+            <!-- UNIT LIST -->
+            <div id="courseworkList">
+                <p class="muted">No coursework units added yet.</p>
+            </div>
+
+        </section>
+
+        <footer>
+            CollegeHub © 2026 | Student Management System
+        </footer>
+
+    </main>
+
+    <script src="coursework.js"></script>
+
+</body>
+</html>
