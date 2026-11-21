@@ -1,0 +1,113 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CollegeHub | Reminders</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- SIDEBAR -->
+    <aside class="sidebar">
+
+        <h2>CollegeHub<span>.</span></h2>
+        <p class="sidebar-label">MAIN MENU</p>
+
+        <nav>
+            <a href="index.html">▦ Dashboard</a>
+            <a href="assignments.html">▤ Assignments</a>
+            <a class="active" href="reminders.html">◷ Reminders</a>
+            <a href="coursework.html">▣ Coursework</a>
+            <a href="progress.html">▥ Progress</a>
+            <a href="profile.html">My Profile</a>
+        </nav>
+
+        <div class="sidebar-footer">
+            STUDENT PORTAL<br>
+            <span>Version 2.0</span>
+        </div>
+
+        <button id="logoutButton" class="logout-button">
+            ↪ Logout
+        </button>
+
+    </aside>
+
+    <!-- MAIN CONTENT -->
+    <main class="main-content">
+
+        <header>
+            <div>
+                <p class="eyebrow">STUDENT MANAGEMENT SYSTEM</p>
+                <h1>Reminders</h1>
+                <p class="muted">Never miss an important college deadline.</p>
+            </div>
+        </header>
+
+        <!-- REMINDER STATISTICS -->
+        <section class="stats">
+
+            <div class="stat-card">
+                <p>UPCOMING</p>
+                <h2 id="upcomingCount">0</h2>
+            </div>
+
+            <div class="stat-card">
+                <p>DUE TODAY</p>
+                <h2 id="todayCount">0</h2>
+            </div>
+
+            <div class="stat-card">
+                <p>OVERDUE</p>
+                <h2 id="overdueCount">0</h2>
+            </div>
+
+        </section>
+
+        <!-- DEADLINE REMINDERS -->
+        <section class="content-card">
+
+            <div class="section-heading">
+                <div>
+                    <h2>Assignment Deadlines</h2>
+                    <p class="muted">Your upcoming coursework deadlines.</p>
+                </div>
+            </div>
+
+            <div id="reminderList">
+                <p class="muted">Loading reminders...</p>
+            </div>
+
+        </section>
+
+        <footer>
+            CollegeHub © 2026 | Student Management System
+        </footer>
+
+        <footer class="site-footer">
+
+            <span>© 2026 CollegeHub. Personal project.</span>
+
+            <div class="footer-links">
+                <a href="about.html">About Us</a>
+                <a href="privacy.html">Privacy Policy</a>
+                <a href="terms.html">Terms of Use</a>
+                <a href="acceptable-use.html">Acceptable Use</a>
+            </div>
+
+        </footer>
+
+    </main>
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="supabase.js"></script>
+    <script src="admin-nav.js"></script>
+    <script src="reminders.js"></script>
+    <script src="logout.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,125 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CollegeHub | My Profile</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- SIDEBAR -->
+    <aside class="sidebar">
+
+        <h2>CollegeHub<span>.</span></h2>
+
+        <p class="sidebar-label">MAIN MENU</p>
+
+        <nav>
+            <a href="index.html">▦ Dashboard</a>
+            <a href="assignments.html">▤ Assignments</a>
+            <a href="reminders.html">◷ Reminders</a>
+            <a href="coursework.html">▣ Coursework</a>
+            <a href="progress.html">▥ Progress</a>
+            <a class="active" href="profile.html">My Profile</a>
+        </nav>
+
+        <div class="sidebar-footer">
+            STUDENT PORTAL<br>
+            <span>Version 2.0</span>
+        </div>
+
+        <button id="logoutButton" class="logout-button">
+            ↪ Logout
+        </button>
+
+    </aside>
+
+    <!-- MAIN CONTENT -->
+    <main class="main-content">
+
+        <header class="topbar">
+            <h1>My Profile</h1>
+        </header>
+
+        <section class="profile-container">
+
+            <div class="profile-header">
+                <div class="profile-avatar" id="profileAvatar">?</div>
+
+                <div>
+                    <h2 id="profileName">Loading profile...</h2>
+                    <p id="profileEmail">Please wait</p>
+                </div>
+            </div>
+
+            <div class="profile-card">
+                <h2>Personal Information</h2>
+
+                <form id="profileForm">
+
+                    <label for="displayName">Display Name</label>
+                    <input type="text" id="displayName" required>
+
+                    <label for="college">College</label>
+                    <input type="text" id="college" placeholder="Enter your college">
+
+                    <label for="course">Course</label>
+                    <input type="text" id="course" placeholder="Enter your course">
+
+                    <button type="submit">Save Changes</button>
+
+                    <p id="profileMessage"></p>
+
+                </form>
+            </div>
+
+            <div class="profile-card">
+                <h2>Account Information</h2>
+
+                <div class="profile-detail">
+                    <span>Account Email</span>
+                    <strong id="accountEmail">Loading...</strong>
+                </div>
+
+                <div class="profile-detail">
+                    <span>Account Role</span>
+                    <strong id="accountRole">Loading...</strong>
+                </div>
+
+                <div class="profile-detail">
+                    <span>Member Since</span>
+                    <strong id="accountCreated">Loading...</strong>
+                </div>
+            </div>
+
+        </section>
+
+        <footer class="site-footer">
+
+            <span>© 2026 CollegeHub. Personal project.</span>
+
+            <div class="footer-links">
+                <a href="about.html">About Us</a>
+                <a href="privacy.html">Privacy Policy</a>
+                <a href="terms.html">Terms of Use</a>
+                <a href="acceptable-use.html">Acceptable Use</a>
+            </div>
+
+        </footer>
+
+    </main>
+
+    
+<!-- JAVASCRIPT -->
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="supabase.js"></script>
+<script src="admin-nav.js"></script>
+<script src="profile.js"></script>
+<script src="logout.js"></script>
+
+</body>
+</html>
