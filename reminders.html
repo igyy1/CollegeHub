@@ -1,0 +1,460 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CollegeHub | Reminders</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- SIDEBAR -->
+    <aside class="sidebar">
+
+        <h2>CollegeHub<span>.</span></h2>
+        <p class="sidebar-label">MAIN MENU</p>
+
+        <nav>
+            <a href="index.html">⌂ Dashboard</a>
+            <a href="assignments.html">▤ Assignments</a>
+            <a href="calendar.html">▦ Calendar</a>
+            <a href="reminders.html" class="active">◷ Reminders</a>
+            <a href="notes.html">▤ Notes</a>
+            <a href="progress.html">▥ Progress</a>
+            <a href="ai-detector.html">⌕ AI Detector</a>
+            <a href="profile.html">♙ My Profile</a>
+            <a hidden href="admin.html">⚙ Admin Panel</a>
+        </nav>
+
+        <button id="logoutButton" class="logout-button">
+            ↪ Logout
+        </button>
+
+        <!-- REPORT A BUG -->
+        <button type="button" id="reportBugButton" class="report-bug-button">
+            <span>⚑</span>
+            Report a Bug
+        </button>
+
+        <div class="sidebar-footer">
+            STUDENT PORTAL<br>
+            <span>Version 3.0</span>
+        </div>
+
+    </aside>
+
+    <!-- MAIN CONTENT -->
+    <main class="main-content">
+
+        <!-- HEADER -->
+        <header class="reminders-page-header">
+            <div>
+                <p class="eyebrow">STUDENT MANAGEMENT SYSTEM</p>
+                <h1>Reminders</h1>
+                <p class="muted">
+                    Keep track of deadlines, tasks and important dates.
+                </p>
+            </div>
+        </header>
+
+        <!-- STATISTICS -->
+        <section class="stats reminder-stats">
+
+            <div class="stat-card">
+                <p>UPCOMING</p>
+                <h2 id="upcomingCount">0</h2>
+            </div>
+
+            <div class="stat-card">
+                <p>DUE TODAY</p>
+                <h2 id="todayCount">0</h2>
+            </div>
+
+            <div class="stat-card">
+                <p>OVERDUE</p>
+                <h2 id="overdueCount">0</h2>
+            </div>
+
+            <div class="stat-card">
+                <p>COMPLETED</p>
+                <h2 id="completedCount">0</h2>
+            </div>
+
+        </section>
+
+        <!-- VIEW CONTROLS -->
+        <section class="content-card reminder-toolbar">
+
+            <div class="reminder-view-switch">
+
+                <button id="listViewBtn" class="active" type="button">
+                    ☰ List View
+                </button>
+
+                <button id="calendarViewBtn" type="button">
+                    ▦ Calendar View
+                </button>
+
+            </div>
+
+            <div class="reminder-filters">
+
+                <input
+                    type="search"
+                    id="reminderSearch"
+                    placeholder="Search reminders..."
+                >
+
+                <select id="reminderFilter">
+                    <option value="all">All reminders</option>
+                    <option value="today">Due today</option>
+                    <option value="upcoming">Upcoming</option>
+                    <option value="overdue">Overdue</option>
+                    <option value="completed">Completed</option>
+                </select>
+
+                <select id="categoryFilter">
+                    <option value="all">All categories</option>
+                    <option value="Coursework">Coursework</option>
+                    <option value="Revision">Revision</option>
+                    <option value="Personal">Personal</option>
+                    <option value="Other">Other</option>
+                </select>
+
+            </div>
+
+        </section>
+
+        <!-- LIST VIEW -->
+        <section id="reminderListView">
+
+            <!-- ACTIVE REMINDERS -->
+            <section class="content-card">
+
+                <div class="section-heading reminder-list-heading">
+
+                    <div>
+                        <h2>Your Reminders</h2>
+                        <p class="muted">
+                            Active deadlines and personal reminders.
+                        </p>
+                    </div>
+
+                    <button id="addReminderBtn" class="primary-button" type="button">
+                        + Add Reminder
+                    </button>
+
+                </div>
+
+                <div id="reminderList">
+                    <p class="muted">Loading reminders...</p>
+                </div>
+
+            </section>
+
+            <!-- PREVIOUS REMINDERS -->
+            <section class="content-card previous-reminders-section">
+
+                <div class="section-heading">
+
+                    <div>
+                        <h2>Previous Reminders</h2>
+                        <p class="muted">
+                            Completed reminders whose due dates have passed.
+                        </p>
+                    </div>
+
+                    <span id="previousReminderCount" class="reminder-count">
+                        0
+                    </span>
+
+                </div>
+
+                <div id="previousReminderList">
+                    <p class="muted">No previous reminders yet.</p>
+                </div>
+
+            </section>
+
+        </section>
+
+        <!-- CALENDAR VIEW -->
+        <section id="reminderCalendarView" class="content-card" hidden>
+
+            <div class="calendar-heading">
+
+                <button id="previousMonthBtn" class="calendar-nav-btn"
+                    type="button" aria-label="Previous month">
+                    ‹
+                </button>
+
+                <h2 id="calendarMonth">Month Year</h2>
+
+                <button id="nextMonthBtn" class="calendar-nav-btn"
+                    type="button" aria-label="Next month">
+                    ›
+                </button>
+
+            </div>
+
+            <div class="reminder-calendar">
+
+                <div class="calendar-weekdays">
+                    <span>Mon</span>
+                    <span>Tue</span>
+                    <span>Wed</span>
+                    <span>Thu</span>
+                    <span>Fri</span>
+                    <span>Sat</span>
+                    <span>Sun</span>
+                </div>
+
+                <div id="calendarDays" class="calendar-days"></div>
+
+            </div>
+
+            <div class="calendar-selected-day">
+
+                <h3 id="selectedDateHeading">Select a date</h3>
+
+                <div id="selectedDateReminders">
+                    <p class="muted">
+                        Select a day to view its reminders.
+                    </p>
+                </div>
+
+            </div>
+
+        </section>
+
+        <!-- ADD / EDIT REMINDER MODAL -->
+        <div id="reminderModal" class="reminder-modal" hidden>
+
+            <div class="reminder-modal-content">
+
+                <div class="reminder-modal-header">
+
+                    <div>
+                        <p class="eyebrow">COLLEGEHUB</p>
+                        <h2 id="reminderModalTitle">Add Reminder</h2>
+                    </div>
+
+                    <button type="button" id="closeReminderModal"
+                        class="modal-close">
+                        ×
+                    </button>
+
+                </div>
+
+                <form id="reminderForm">
+
+                    <input type="hidden" id="reminderId">
+
+                    <label for="reminderTitle">Reminder title</label>
+
+                    <input type="text" id="reminderTitle"
+                        maxlength="150"
+                        placeholder="e.g. Revise for Biology" required>
+
+                    <label for="reminderDescription">Description</label>
+
+                    <textarea id="reminderDescription" rows="3"
+                        placeholder="Add any extra details..."></textarea>
+
+                    <div class="reminder-form-row">
+
+                        <div>
+                            <label for="reminderDate">Due date</label>
+                            <input type="date" id="reminderDate" required>
+                        </div>
+
+                        <div>
+                            <label for="reminderCategory">Category</label>
+                            <select id="reminderCategory">
+                                <option value="Coursework">Coursework</option>
+                                <option value="Revision">Revision</option>
+                                <option value="Personal">Personal</option>
+                                <option value="Other" selected>Other</option>
+                            </select>
+                        </div>
+
+                    </div>
+
+                    <!-- COURSEWORK LINK -->
+                    <div id="assignmentLinkField"
+                        class="assignment-link-field" hidden>
+
+                        <label for="reminderAssignment">
+                            Link to assignment
+                        </label>
+
+                        <select id="reminderAssignment">
+                            <option value="">Select an assignment...</option>
+                        </select>
+
+                        <div id="linkedUnitDisplay" class="linked-unit-display">
+                            <span class="muted">
+                                Select an assignment to see its linked unit.
+                            </span>
+                        </div>
+
+                        <p class="muted assignment-link-note">
+                            This reminder will be linked to the selected
+                            assignment and its unit.
+                        </p>
+
+                    </div>
+
+                    <label for="reminderPriority">Priority</label>
+
+                    <select id="reminderPriority">
+                        <option value="Low">Low</option>
+                        <option value="Medium" selected>Medium</option>
+                        <option value="High">High</option>
+                    </select>
+
+                    <div class="reminder-modal-actions">
+
+                        <button type="button" id="cancelReminderBtn"
+                            class="secondary-button">
+                            Cancel
+                        </button>
+
+                        <button type="submit" id="saveReminderBtn"
+                            class="primary-button">
+                            Save Reminder
+                        </button>
+
+                    </div>
+
+                </form>
+
+            </div>
+
+        </div>
+
+        <!-- DELETE CONFIRMATION MODAL -->
+        <div id="deleteReminderModal" class="reminder-modal" hidden>
+
+            <div class="reminder-modal-content confirmation-modal">
+
+                <h2>Delete Reminder?</h2>
+
+                <p class="muted">
+                    Are you sure you want to delete this reminder?
+                    This action cannot be undone.
+                </p>
+
+                <div class="reminder-modal-actions">
+
+                    <button id="cancelDeleteBtn"
+                        class="secondary-button" type="button">
+                        Cancel
+                    </button>
+
+                    <button id="confirmDeleteBtn"
+                        class="danger-button" type="button">
+                        Delete Reminder
+                    </button>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- REMINDER NOTIFICATION -->
+        <div id="reminderToast" class="reminder-toast"
+            role="status" aria-live="polite"></div>
+
+        <!-- FOOTER -->
+        <footer class="site-footer">
+
+            <span>© 2026 CollegeHub. Personal project.</span>
+
+            <div class="footer-links">
+                <a href="about.html">About Us</a>
+                <a href="privacy.html">Privacy Policy</a>
+                <a href="terms.html">Terms of Use</a>
+                <a href="acceptable-use.html">Acceptable Use</a>
+            </div>
+
+        </footer>
+
+    </main>
+
+    <!-- REPORT A BUG MODAL -->
+    <div id="bugReportModal" class="bug-report-modal hidden">
+
+        <div class="bug-report-content">
+
+            <div class="bug-report-header">
+                <div>
+                    <p class="eyebrow">COLLEGEHUB SUPPORT</p>
+                    <h2>Report a Bug</h2>
+                    <p class="muted">
+                        Let us know if something isn't working correctly.
+                    </p>
+                </div>
+
+                <button type="button" id="closeBugReport"
+                    class="modal-close-button" aria-label="Close">
+                    &times;
+                </button>
+            </div>
+
+            <form id="bugReportForm">
+
+                <label for="bugCategory">Issue category</label>
+                <select id="bugCategory" required>
+                    <option value="">Select a category</option>
+                    <option value="Bug">General Bug</option>
+                    <option value="Layout Issue">Layout Issue</option>
+                    <option value="Performance">Performance Issue</option>
+                    <option value="Login Issue">Login / Account Issue</option>
+                    <option value="Other">Other</option>
+                </select>
+
+                <label for="bugDescription">Describe the issue</label>
+                <textarea id="bugDescription" rows="6"
+                    maxlength="2000" required
+                    placeholder="Explain what happened, what you expected to happen and how we can reproduce the issue..."></textarea>
+
+                <p class="muted bug-character-count">
+                    <span id="bugCharacterCount">0</span>/2000 characters
+                </p>
+
+                <div class="bug-report-actions">
+
+                    <button type="button" id="cancelBugReport"
+                        class="secondary-button">
+                        Cancel
+                    </button>
+
+                    <button type="submit" id="submitBugReport">
+                        Submit Report
+                    </button>
+
+                </div>
+
+            </form>
+
+        </div>
+
+    </div>
+
+    <!-- SCRIPTS -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="supabase.js"></script>
+    <script src="admin-nav.js"></script>
+    <script src="reminders.js"></script>
+    <script src="logout.js"></script>
+    <script src="date-time.js"></script>
+    <script src="bug-report.js"></script>
+    <script src="theme.js"></script>
+
+</body>
+</html>

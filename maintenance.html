@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CollegeHub | Under Maintenance</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #101722;
+            color: #ffffff;
+            font-family: Arial, sans-serif;
+            padding: 25px;
+        }
+
+        .maintenance-container {
+            width: 100%;
+            max-width: 600px;
+            text-align: center;
+        }
+
+        .logo {
+            font-size: 32px;
+            font-weight: bold;
+            margin-bottom: 55px;
+        }
+
+        .logo span {
+            color: #6fa8ff;
+        }
+
+        .icon {
+            font-size: 65px;
+            margin-bottom: 25px;
+        }
+
+        .status {
+            display: inline-block;
+            background: #332b16;
+            color: #facc15;
+            padding: 8px 14px;
+            border-radius: 6px;
+            font-size: 11px;
+            font-weight: bold;
+            letter-spacing: 1px;
+            margin-bottom: 25px;
+        }
+
+        h1 {
+            font-size: 36px;
+            margin-bottom: 18px;
+        }
+
+        .description {
+            color: #aab7c8;
+            font-size: 15px;
+            line-height: 1.7;
+            margin-bottom: 30px;
+        }
+
+        .divider {
+            width: 65px;
+            height: 3px;
+            background: #4778b8;
+            margin: 0 auto 30px;
+            border-radius: 5px;
+        }
+
+        button {
+            background: #4778b8;
+            color: white;
+            border: none;
+            padding: 13px 24px;
+            border-radius: 7px;
+            font-size: 14px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        button:hover {
+            background: #6094d4;
+            transform: translateY(-2px);
+        }
+
+        footer {
+            margin-top: 65px;
+            color: #64748b;
+            font-size: 12px;
+        }
+
+        @media (max-width: 500px) {
+            h1 {
+                font-size: 28px;
+            }
+
+            .logo {
+                margin-bottom: 40px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="maintenance-container">
+
+        <div class="logo">CollegeHub<span>.</span></div>
+
+        <div class="icon">⚙️</div>
+
+        <div class="status">SYSTEM MAINTENANCE</div>
+
+        <h1>We'll be back soon.</h1>
+
+        <div class="divider"></div>
+
+        <p class="description">
+            CollegeHub is currently undergoing scheduled maintenance.
+            We're working behind the scenes to improve your experience.
+            Please check back shortly.
+        </p>
+
+        <button onclick="window.location.reload()">
+            Check Again
+        </button>
+
+        <footer>
+            © 2026 CollegeHub. All rights reserved.
+        </footer>
+
+    </div>
+
+</body>
+</html>

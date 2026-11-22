@@ -1,0 +1,211 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CollegeHub | AI Detector</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- SIDEBAR -->
+    <aside class="sidebar">
+
+        <h2>CollegeHub<span>.</span></h2>
+        <p class="sidebar-label">MAIN MENU</p>
+
+        <nav>
+            <a href="index.html">⌂ Dashboard</a>
+            <a href="assignments.html">▤ Assignments</a>
+            <a href="calendar.html">▦ Calendar</a>
+            <a href="reminders.html">◷ Reminders</a>
+            <a href="notes.html">▤ Notes</a>
+            <a href="progress.html">▥ Progress</a>
+            <a href="ai-detector.html" class="active">⌕ AI Detector</a>
+            <a href="profile.html">♙ My Profile</a>
+            <a hidden href="admin.html">⚙ Admin Panel</a>
+        </nav>
+
+        <button id="logoutButton" class="logout-button">
+            ↪ Logout
+        </button>
+
+        <!-- REPORT A BUG -->
+        <button type="button" id="reportBugButton" class="report-bug-button">
+            <span>⚑</span>
+            Report a Bug
+        </button>
+
+        <div class="sidebar-footer">
+            STUDENT PORTAL<br>
+            <span>Version 3.0</span>
+        </div>
+
+    </aside>
+
+    <!-- MAIN CONTENT -->
+    <main class="main-content">
+
+        <header>
+            <div>
+                <p class="eyebrow">STUDENT MANAGEMENT SYSTEM</p>
+                <h1>AI Writing Detector <span class="beta-badge">BETA</span></h1>
+                <p class="muted">
+                    Analyse writing patterns and receive an estimated assessment.
+                </p>
+            </div>
+
+            <div class="date-display" id="today"></div>
+        </header>
+
+        <!-- DETECTOR -->
+        <section class="content-card">
+
+            <h2>Analyse Your Writing</h2>
+
+            <p class="muted">
+                Paste your text below to analyse sentence structure,
+                vocabulary repetition and writing patterns.
+            </p>
+
+            <textarea
+                id="detectorText"
+                rows="12"
+                placeholder="Paste your writing here..."
+            ></textarea>
+
+            <p class="muted">
+                Characters: <span id="characterCount">0</span>
+            </p>
+
+            <button id="analyseButton" type="button">
+                Analyse Text
+            </button>
+
+            <p class="muted">
+                This is a beta feature currently under development.
+                Results may be inaccurate while we continue improving
+                the analysis system.
+            </p>
+
+        </section>
+
+        <!-- RESULTS -->
+        <section id="resultsSection" class="content-card hidden">
+
+            <h2>Analysis Results</h2>
+
+            <div class="stats">
+                <div class="stat-card">
+                    <p>WRITING PATTERN SCORE</p>
+                    <h2 id="aiScore">--</h2>
+                </div>
+
+                <div class="stat-card">
+                    <p>ASSESSMENT</p>
+                    <h2 id="aiVerdict">--</h2>
+                </div>
+            </div>
+
+            <h3>Sentence Analysis</h3>
+            <div id="sentenceResults"></div>
+
+            <p class="muted">
+                These results are estimates based on writing patterns,
+                not proof that text was or was not written by AI.
+            </p>
+
+        </section>
+
+        <!-- FOOTER -->
+        <footer class="site-footer">
+
+            <span>© 2026 CollegeHub. Personal project.</span>
+
+            <div class="footer-links">
+                <a href="about.html">About Us</a>
+                <a href="privacy.html">Privacy Policy</a>
+                <a href="terms.html">Terms of Use</a>
+                <a href="acceptable-use.html">Acceptable Use</a>
+            </div>
+
+        </footer>
+
+    </main>
+
+    <!-- REPORT A BUG MODAL -->
+    <div id="bugReportModal" class="bug-report-modal hidden">
+
+        <div class="bug-report-content">
+
+            <div class="bug-report-header">
+                <div>
+                    <p class="eyebrow">COLLEGEHUB SUPPORT</p>
+                    <h2>Report a Bug</h2>
+                    <p class="muted">Let us know if something isn't working correctly.</p>
+                </div>
+
+                <button type="button" id="closeBugReport"
+                    class="modal-close-button" aria-label="Close">
+                    &times;
+                </button>
+            </div>
+
+            <form id="bugReportForm">
+
+                <label for="bugCategory">Issue category</label>
+
+                <select id="bugCategory" required>
+                    <option value="">Select a category</option>
+                    <option value="Bug">General Bug</option>
+                    <option value="Layout Issue">Layout Issue</option>
+                    <option value="Performance">Performance Issue</option>
+                    <option value="Login Issue">Login / Account Issue</option>
+                    <option value="Other">Other</option>
+                </select>
+
+                <label for="bugDescription">Describe the issue</label>
+
+                <textarea
+                    id="bugDescription"
+                    rows="6"
+                    maxlength="2000"
+                    required
+                    placeholder="Explain what happened, what you expected to happen and how we can reproduce the issue..."
+                ></textarea>
+
+                <p class="muted bug-character-count">
+                    <span id="bugCharacterCount">0</span>/2000 characters
+                </p>
+
+                <div class="bug-report-actions">
+                    <button type="button" id="cancelBugReport" class="secondary-button">
+                        Cancel
+                    </button>
+
+                    <button type="submit" id="submitBugReport">
+                        Submit Report
+                    </button>
+                </div>
+
+            </form>
+
+        </div>
+
+    </div>
+
+    <!-- SCRIPTS -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="supabase.js"></script>
+    <script src="admin-nav.js"></script>
+    <script src="date-time.js"></script>
+    <script src="ai-detector.js"></script>
+    <script src="logout.js"></script>
+    <script src="bug-report.js"></script>
+<script src="theme.js"></script>
+
+</body>
+</html>

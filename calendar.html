@@ -1,0 +1,439 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CollegeHub | Calendar</title>
+
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="calendar.css">
+</head>
+
+<body>
+
+    <!-- SIDEBAR -->
+    <aside class="sidebar">
+
+        <h2>CollegeHub<span>.</span></h2>
+        <p class="sidebar-label">MAIN MENU</p>
+
+        <nav>
+            <a href="index.html">⌂ Dashboard</a>
+            <a href="assignments.html">▤ Assignments</a>
+            <a href="calendar.html" class="active">▦ Calendar</a>
+            <a href="reminders.html">◷ Reminders</a>
+            <a href="notes.html">▤ Notes</a>
+            <a href="progress.html">▥ Progress</a>
+            <a href="ai-detector.html">⌕ AI Detector</a>
+            <a href="profile.html">♙ My Profile</a>
+            <a hidden href="admin.html">⚙ Admin Panel</a>
+        </nav>
+
+        <button id="logoutButton" class="logout-button">
+            ↪ Logout
+        </button>
+
+        <button type="button" id="reportBugButton" class="report-bug-button">
+            <span>⚑</span>
+            Report a Bug
+        </button>
+
+        <div class="sidebar-footer">
+            STUDENT PORTAL<br>
+            <span>Version 3.0</span>
+        </div>
+
+    </aside>
+
+    <!-- MAIN CONTENT -->
+    <main class="main-content">
+
+        <header>
+            <div>
+                <p class="eyebrow">STUDENT MANAGEMENT SYSTEM</p>
+                <h1>Calendar</h1>
+                <p class="muted">
+                    Keep track of your assignments, reminders and important dates.
+                </p>
+            </div>
+        </header>
+
+        <!-- CALENDAR -->
+        <section class="calendar-page">
+
+            <!-- TOOLBAR -->
+            <div class="calendar-toolbar">
+
+                <div class="calendar-heading">
+                    <p class="eyebrow">YOUR SCHEDULE</p>
+                    <h2 id="calendarMonth">Loading month...</h2>
+                    <p>Manage your upcoming events and deadlines.</p>
+                </div>
+
+                <div class="calendar-controls">
+
+                    <button id="addCalendarEventBtn" type="button" class="calendar-add-button">
+                        + Add Event
+                    </button>
+
+                    <div class="calendar-navigation">
+                        <button id="previousMonthBtn" type="button" aria-label="Previous month">
+                            ←
+                        </button>
+
+                        <button id="todayBtn" type="button">
+                            Today
+                        </button>
+
+                        <button id="nextMonthBtn" type="button" aria-label="Next month">
+                            →
+                        </button>
+                    </div>
+
+                </div>
+
+            </div>
+
+            <!-- CALENDAR LAYOUT -->
+            <div class="calendar-layout">
+
+                <!-- MONTH CALENDAR -->
+                <section class="calendar-main">
+
+                    <div class="calendar-weekdays">
+                        <span>Mon</span>
+                        <span>Tue</span>
+                        <span>Wed</span>
+                        <span>Thu</span>
+                        <span>Fri</span>
+                        <span>Sat</span>
+                        <span>Sun</span>
+                    </div>
+
+                    <div id="calendarDays" class="calendar-days">
+                        <p>Loading calendar...</p>
+                    </div>
+
+                    <!-- LEGEND -->
+                    <div class="calendar-legend">
+
+                        <span>
+                            <i class="legend-dot assignment-dot"></i>
+                            Assignments
+                        </span>
+
+                        <span>
+                            <i class="legend-dot reminder-dot"></i>
+                            Reminders
+                        </span>
+
+                        <span>
+                            <i class="legend-dot personal-dot"></i>
+                            Personal / Other
+                        </span>
+
+                        <span>
+                            <i class="legend-dot completed-dot"></i>
+                            Completed
+                        </span>
+
+                    </div>
+
+                </section>
+
+                <!-- CALENDAR SIDEBAR -->
+                <aside class="calendar-sidebar">
+
+                    <!-- SELECTED DATE -->
+                    <div class="calendar-events-card">
+
+                        <div class="calendar-card-heading">
+                            <div>
+                                <p class="eyebrow">DAILY SCHEDULE</p>
+                                <h3 id="selectedDateHeading">Select a date</h3>
+                            </div>
+
+                            <span class="calendar-card-icon">▦</span>
+                        </div>
+
+                        <p class="muted">
+                            Your events for the selected day.
+                        </p>
+
+                        <div id="selectedDateEvents">
+                            <p class="muted">No date selected.</p>
+                        </div>
+
+                    </div>
+
+                    <!-- UPCOMING EVENTS -->
+                    <div class="calendar-events-card">
+
+                        <div class="calendar-card-heading">
+                            <div>
+                                <p class="eyebrow">LOOKING AHEAD</p>
+                                <h3>Upcoming</h3>
+                            </div>
+
+                            <span class="calendar-card-icon">◷</span>
+                        </div>
+
+                        <p class="muted">
+                            Your next seven days.
+                        </p>
+
+                        <div id="upcomingEvents">
+                            <p class="muted">Loading upcoming events...</p>
+                        </div>
+
+                    </div>
+
+                </aside>
+
+            </div>
+
+        </section>
+
+        <!-- FOOTER -->
+        <footer>
+            CollegeHub © 2026 | Student Management System
+        </footer>
+
+        <footer class="site-footer">
+            <span>© 2026 CollegeHub. Personal project.</span>
+
+            <div class="footer-links">
+                <a href="about.html">About Us</a>
+                <a href="privacy.html">Privacy Policy</a>
+                <a href="terms.html">Terms of Use</a>
+                <a href="acceptable-use.html">Acceptable Use</a>
+            </div>
+        </footer>
+
+    </main>
+
+    <!-- REPORT A BUG MODAL -->
+    <div id="bugReportModal" class="bug-report-modal hidden">
+
+        <div class="bug-report-content">
+
+            <div class="bug-report-header">
+
+                <div>
+                    <p class="eyebrow">COLLEGEHUB SUPPORT</p>
+                    <h2>Report a Bug</h2>
+                    <p class="muted">
+                        Let us know if something isn't working correctly.
+                    </p>
+                </div>
+
+                <button
+                    type="button"
+                    id="closeBugReport"
+                    class="modal-close-button"
+                    aria-label="Close">
+                    &times;
+                </button>
+
+            </div>
+
+            <form id="bugReportForm">
+
+                <label for="bugCategory">Issue category</label>
+
+                <select id="bugCategory" required>
+                    <option value="">Select a category</option>
+                    <option value="Bug">General Bug</option>
+                    <option value="Layout Issue">Layout Issue</option>
+                    <option value="Performance">Performance Issue</option>
+                    <option value="Login Issue">Login / Account Issue</option>
+                    <option value="Other">Other</option>
+                </select>
+
+                <label for="bugDescription">Describe the issue</label>
+
+                <textarea
+                    id="bugDescription"
+                    rows="6"
+                    maxlength="2000"
+                    required
+                    placeholder="Explain what happened, what you expected to happen and how we can reproduce the issue..."></textarea>
+
+                <p class="muted bug-character-count">
+                    <span id="bugCharacterCount">0</span>/2000 characters
+                </p>
+
+                <div class="bug-report-actions">
+
+                    <button
+                        type="button"
+                        id="cancelBugReport"
+                        class="secondary-button">
+                        Cancel
+                    </button>
+
+                    <button type="submit" id="submitBugReport">
+                        Submit Report
+                    </button>
+
+                </div>
+
+            </form>
+
+        </div>
+
+    </div>
+
+    <!-- WEBSITE NOTIFICATIONS -->
+    <div
+        id="collegeHubToast"
+        class="collegehub-toast"
+        role="status"
+        aria-live="polite">
+    </div>
+
+    <!-- ADD CALENDAR EVENT MODAL -->
+    <div id="addCalendarEventModal" class="calendar-event-modal" hidden>
+
+        <div class="calendar-event-content">
+
+            <div class="calendar-event-header">
+
+                <div>
+                    <p class="eyebrow">YOUR SCHEDULE</p>
+                    <h2>Add Calendar Event</h2>
+                    <p class="muted">Create something for your calendar.</p>
+                </div>
+
+                <button
+                    type="button"
+                    id="closeAddCalendarEvent"
+                    class="calendar-event-close"
+                    aria-label="Close">
+                    &times;
+                </button>
+
+            </div>
+
+            <form id="addCalendarEventForm">
+
+                <label for="calendarEventName">Event title</label>
+
+                <input
+                    type="text"
+                    id="calendarEventName"
+                    maxlength="100"
+                    placeholder="e.g. College meeting"
+                    required>
+
+                <label for="calendarEventDate">Date</label>
+
+                <input
+                    type="date"
+                    id="calendarEventDate"
+                    required>
+
+                <label for="calendarEventCategory">Category</label>
+
+                <select id="calendarEventCategory" required>
+                    <option value="Assignment">Assignment</option>
+                    <option value="Personal">Personal</option>
+                    <option value="Other">Other</option>
+                </select>
+
+                <label for="calendarEventDescription">Description</label>
+
+                <textarea
+                    id="calendarEventDescription"
+                    rows="4"
+                    maxlength="1000"
+                    placeholder="Add any extra details..."></textarea>
+
+                <div class="bug-report-actions">
+
+                    <button
+                        type="button"
+                        id="cancelAddCalendarEvent"
+                        class="secondary-button">
+                        Cancel
+                    </button>
+
+                    <button type="submit">
+                        Save Event
+                    </button>
+
+                </div>
+
+            </form>
+
+        </div>
+
+    </div>
+
+    <!-- EVENT DETAILS MODAL -->
+  
+
+<!-- EVENT DETAILS MODAL -->
+<div id="calendarEventModal" class="calendar-event-modal" hidden>
+
+    <div class="calendar-event-content">
+
+        <div class="calendar-event-header">
+
+            <div>
+                <p class="eyebrow">EVENT DETAILS</p>
+                <h2 id="calendarEventTitle">Event Details</h2>
+            </div>
+
+            <button
+                type="button"
+                id="closeCalendarEvent"
+                class="calendar-event-close"
+                aria-label="Close">
+                &times;
+            </button>
+
+        </div>
+
+        <!-- EVENT INFORMATION -->
+        <div id="calendarEventDetails" class="calendar-event-details"></div>
+
+        <!-- EVENT ACTIONS -->
+        <div class="calendar-event-actions">
+
+            <button
+                type="button"
+                id="editCalendarEventBtn"
+                class="secondary-button"
+                hidden>
+                Edit Event
+            </button>
+
+            <button
+                type="button"
+                id="deleteCalendarEventBtn"
+                class="secondary-button danger"
+                hidden>
+                Delete Event
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+
+    <!-- SCRIPTS -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="supabase.js"></script>
+    <script src="admin-nav.js"></script>
+    <script src="logout.js"></script>
+    <script src="date-time.js"></script>
+    <script src="bug-report.js"></script>
+    <script src="theme.js"></script>
+    <script src="calendar.js"></script>
+
+</body>
+</html>

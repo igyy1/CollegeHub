@@ -1,0 +1,432 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CollegeHub | Notes</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- SIDEBAR -->
+    <aside class="sidebar">
+
+        <h2>CollegeHub<span>.</span></h2>
+        <p class="sidebar-label">MAIN MENU</p>
+
+        <nav>
+            <a href="index.html">⌂ Dashboard</a>
+            <a href="assignments.html">▤ Assignments</a>
+            <a href="calendar.html">▦ Calendar</a>
+            <a href="reminders.html">◷ Reminders</a>
+            <a href="notes.html" class="active">▤ Notes</a>
+            <a href="progress.html">▥ Progress</a>
+            <a href="ai-detector.html">⌕ AI Detector</a>
+            <a href="profile.html">♙ My Profile</a>
+            <a hidden href="admin.html">⚙ Admin Panel</a>
+        </nav>
+
+        <button id="logoutButton" class="logout-button">
+            ↪ Logout
+        </button>
+
+        <!-- REPORT A BUG -->
+        <button type="button" id="reportBugButton" class="report-bug-button">
+            <span>⚑</span>
+            Report a Bug
+        </button>
+
+        <div class="sidebar-footer">
+            STUDENT PORTAL<br>
+            <span>Version 3.0</span>
+        </div>
+
+    </aside>
+
+    <!-- MAIN CONTENT -->
+    <main class="main-content">
+
+        <!-- HEADER -->
+        <header>
+            <div>
+                <p class="eyebrow">STUDENT MANAGEMENT SYSTEM</p>
+                <h1>My Notes</h1>
+                <p class="muted">
+                    Your personal space for revision, learning and coursework.
+                </p>
+            </div>
+
+            <div class="date-display" id="today"></div>
+        </header>
+
+        <!-- STATISTICS -->
+        <section class="stats">
+
+            <div class="stat-card">
+                <p>TOTAL NOTES</p>
+                <h2 id="totalNotes">0</h2>
+            </div>
+
+            <div class="stat-card">
+                <p>SUBJECTS</p>
+                <h2 id="totalSubjects">0</h2>
+            </div>
+
+            <div class="stat-card">
+                <p>RECENTLY UPDATED</p>
+                <h2 id="recentNotes">0</h2>
+            </div>
+
+            <div class="stat-card">
+                <p>FAVOURITES</p>
+                <h2 id="favouriteNotes">0</h2>
+            </div>
+
+        </section>
+
+        <!-- NOTES DASHBOARD -->
+        <section class="content-card notes-dashboard">
+
+            <div class="section-heading">
+
+                <div>
+                    <h2>Your Workspace</h2>
+                    <p class="muted">
+                        Manage all your notes in one place.
+                    </p>
+                </div>
+
+                <button id="createNoteButton" type="button">
+                    + Create Note
+                </button>
+
+            </div>
+
+            <!-- NOTES TOOLBAR -->
+            <div class="notes-toolbar">
+
+                <div class="notes-controls">
+
+                    <input
+                        type="search"
+                        id="noteSearch"
+                        placeholder="Search notes, subjects or content..."
+                    >
+
+                    <select id="subjectFilter">
+                        <option value="all">All subjects</option>
+                    </select>
+
+                    <select id="noteSort">
+                        <option value="updated">Recently updated</option>
+                        <option value="oldest">Oldest updated</option>
+                        <option value="alphabetical">Alphabetical</option>
+                    </select>
+
+                </div>
+
+                <div class="notes-view-controls">
+
+                    <button
+                        type="button"
+                        id="showAllNotes"
+                        class="notes-filter-button active"
+                    >
+                        All Notes
+                    </button>
+
+                    <button
+                        type="button"
+                        id="showFavouriteNotes"
+                        class="notes-filter-button"
+                    >
+                        ★ Favourites
+                    </button>
+
+                    <div class="notes-view-toggle">
+
+                        <button
+                            type="button"
+                            id="gridViewButton"
+                            class="notes-view-button active"
+                            title="Grid view"
+                        >
+                            ▦
+                        </button>
+
+                        <button
+                            type="button"
+                            id="listViewButton"
+                            class="notes-view-button"
+                            title="List view"
+                        >
+                            ☰
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <!-- NOTES INFORMATION -->
+            <div class="notes-results-bar">
+
+                <p id="notesResultCount">Showing 0 notes</p>
+
+                <p id="notesSaveStatus" class="notes-save-status">
+                    <span></span> All changes saved
+                </p>
+
+            </div>
+
+            <!-- NOTES LIST -->
+            <div id="notesList">
+
+                <div class="notes-empty">
+                    <h3>No notes yet</h3>
+                    <p class="muted">
+                        Create your first note to get started.
+                    </p>
+                </div>
+
+            </div>
+
+        </section>
+
+        <!-- NOTE EDITOR -->
+        <section id="noteFormSection" class="content-card notes-editor hidden">
+
+            <div class="notes-editor-heading">
+
+                <div>
+                    <p class="eyebrow">NOTE EDITOR</p>
+                    <h2 id="noteFormHeading">Create a new note</h2>
+                    <p class="muted">
+                        Write, organise and develop your revision notes.
+                    </p>
+                </div>
+
+                <button
+                    type="button"
+                    id="cancelNoteButton"
+                    class="secondary-button"
+                >
+                    Close Editor
+                </button>
+
+            </div>
+
+            <form id="noteForm">
+
+                <div class="notes-editor-fields">
+
+                    <div class="notes-field">
+
+                        <label for="noteTitle">Note title</label>
+
+                        <input
+                            type="text"
+                            id="noteTitle"
+                            placeholder="Give your note a title..."
+                            required
+                        >
+
+                    </div>
+
+                    <div class="notes-field">
+
+                        <label for="noteSubject">Subject / Unit</label>
+
+                        <input
+                            type="text"
+                            id="noteSubject"
+                            placeholder="e.g. Travel and Tourism"
+                            required
+                        >
+
+                    </div>
+
+                </div>
+
+                <!-- EDITOR TOOLBAR -->
+                <div class="notes-format-toolbar">
+
+                    <button type="button" data-format="bold" title="Bold">
+                        <strong>B</strong>
+                    </button>
+
+                    <button type="button" data-format="italic" title="Italic">
+                        <em>I</em>
+                    </button>
+
+                    <button type="button" data-format="underline" title="Underline">
+                        <u>U</u>
+                    </button>
+
+                    <span class="notes-toolbar-divider"></span>
+
+                    <button type="button" data-format="heading" title="Heading">
+                        H
+                    </button>
+
+                    <button type="button" data-format="bullet" title="Bullet list">
+                        • List
+                    </button>
+
+                    <button type="button" data-format="number" title="Numbered list">
+                        1. List
+                    </button>
+
+                </div>
+
+                <!-- NOTE CONTENT -->
+                <div class="notes-content-wrapper">
+
+                    <label for="noteContent">Note content</label>
+
+                    <textarea
+                        id="noteContent"
+                        placeholder="Start writing your notes here..."
+                        rows="16"
+                        required
+                    ></textarea>
+
+                    <div class="notes-editor-footer">
+
+                        <span id="noteWordCount">0 words</span>
+
+                        <span>Keep your learning organised.</span>
+
+                    </div>
+
+                </div>
+
+                <!-- EDITOR ACTIONS -->
+                <div class="note-form-actions">
+
+                    <button type="submit" id="saveNoteButton">
+                        Save Note
+                    </button>
+
+                    <button
+                        type="button"
+                        id="cancelNoteButtonBottom"
+                        class="secondary-button"
+                    >
+                        Cancel
+                    </button>
+
+                </div>
+
+            </form>
+
+        </section>
+
+        <!-- FOOTER -->
+        <footer class="site-footer">
+
+            <span>© 2026 CollegeHub. Personal project.</span>
+
+            <div class="footer-links">
+                <a href="about.html">About Us</a>
+                <a href="privacy.html">Privacy Policy</a>
+                <a href="terms.html">Terms of Use</a>
+                <a href="acceptable-use.html">Acceptable Use</a>
+            </div>
+
+        </footer>
+
+    </main>
+
+    <!-- NOTES NOTIFICATIONS -->
+    <div id="notesToast" class="notes-toast"></div>
+
+    <!-- REPORT A BUG MODAL -->
+    <div id="bugReportModal" class="bug-report-modal hidden">
+
+        <div class="bug-report-content">
+
+            <div class="bug-report-header">
+                <div>
+                    <p class="eyebrow">COLLEGEHUB SUPPORT</p>
+                    <h2>Report a Bug</h2>
+                    <p class="muted">
+                        Let us know if something isn't working correctly.
+                    </p>
+                </div>
+
+                <button
+                    type="button"
+                    id="closeBugReport"
+                    class="modal-close-button"
+                    aria-label="Close"
+                >
+                    &times;
+                </button>
+            </div>
+
+            <form id="bugReportForm">
+
+                <label for="bugCategory">Issue category</label>
+
+                <select id="bugCategory" required>
+                    <option value="">Select a category</option>
+                    <option value="Bug">General Bug</option>
+                    <option value="Layout Issue">Layout Issue</option>
+                    <option value="Performance">Performance Issue</option>
+                    <option value="Login Issue">Login / Account Issue</option>
+                    <option value="Other">Other</option>
+                </select>
+
+                <label for="bugDescription">Describe the issue</label>
+
+                <textarea
+                    id="bugDescription"
+                    rows="6"
+                    maxlength="2000"
+                    required
+                    placeholder="Explain what happened, what you expected to happen and how we can reproduce the issue..."
+                ></textarea>
+
+                <p class="muted bug-character-count">
+                    <span id="bugCharacterCount">0</span>/2000 characters
+                </p>
+
+                <div class="bug-report-actions">
+
+                    <button
+                        type="button"
+                        id="cancelBugReport"
+                        class="secondary-button"
+                    >
+                        Cancel
+                    </button>
+
+                    <button type="submit" id="submitBugReport">
+                        Submit Report
+                    </button>
+
+                </div>
+
+            </form>
+
+        </div>
+
+    </div>
+
+    <!-- SCRIPTS -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="supabase.js"></script>
+    <script src="admin-nav.js"></script>
+    <script src="date-time.js"></script>
+    <script src="notes.js"></script>
+    <script src="logout.js"></script>
+    <script src="bug-report.js"></script>
+    <script src="theme.js"></script>
+
+</body>
+</html>

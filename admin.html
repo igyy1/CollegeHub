@@ -1,0 +1,251 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CollegeHub | Admin Panel</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- SIDEBAR -->
+    <aside class="sidebar">
+
+        <h2>CollegeHub<span>.</span></h2>
+        <p class="sidebar-label">MAIN MENU</p>
+
+        <nav>
+            <a href="index.html">⌂ Dashboard</a>
+            <a href="assignments.html">▤ Assignments</a>
+            <a href="calendar.html">▦ Calendar</a>
+            <a href="reminders.html">◷ Reminders</a>
+            <a href="notes.html">▤ Notes</a>
+            <a href="progress.html">▥ Progress</a>
+            <a href="ai-detector.html">⌕ AI Detector</a>
+            <a href="profile.html">♙ My Profile</a>
+            <a hidden href="admin.html">⚙ Admin Panel</a>
+        </nav>
+
+        <button id="logoutButton" class="logout-button">
+            ↪ Logout
+        </button>
+
+        <!-- REPORT A BUG -->
+        <button type="button" id="reportBugButton" class="report-bug-button">
+            <span>⚑</span>
+            Report a Bug
+        </button>
+
+        <div class="sidebar-footer">
+            ADMIN PORTAL<br>
+            <span>Version 3.0</span>
+        </div>
+
+    </aside>
+
+    <!-- MAIN CONTENT -->
+    <main class="main-content">
+
+        <header>
+            <div>
+                <p class="eyebrow">STUDENT MANAGEMENT SYSTEM</p>
+                <h1>Admin Panel</h1>
+                <p class="muted">
+                    Manage students, monitor activity and oversee CollegeHub.
+                </p>
+            </div>
+
+            <div class="date-display" id="today"></div>
+        </header>
+
+        <!-- ADMIN STATISTICS -->
+        <section class="stats">
+
+            <div class="stat-card">
+                <p>TOTAL STUDENTS</p>
+                <h2 id="totalStudents">0</h2>
+            </div>
+
+            <div class="stat-card">
+                <p>ADMINISTRATORS</p>
+                <h2 id="totalAdmins">0</h2>
+            </div>
+
+        </section>
+
+        <!-- STUDENT MANAGEMENT -->
+        <section class="content-card">
+
+            <div class="section-heading">
+                <div>
+                    <h2>Student Management</h2>
+                    <p class="muted">
+                        Search, view and manage registered CollegeHub accounts.
+                    </p>
+                </div>
+            </div>
+
+            <!-- SEARCH AND FILTERS -->
+            <div class="admin-controls">
+
+                <input
+                    type="search"
+                    id="studentSearch"
+                    placeholder="Search students by name..."
+                >
+
+                <select id="roleFilter">
+                    <option value="all">All accounts</option>
+                    <option value="student">Students</option>
+                    <option value="admin">Administrators</option>
+                </select>
+
+            </div>
+
+            <!-- STUDENT LIST -->
+            <div id="studentList">
+                <p class="muted">Loading student accounts...</p>
+            </div>
+
+        </section>
+
+        <!-- ACCOUNT DETAILS MODAL -->
+        <div id="accountModal" class="admin-modal hidden">
+
+            <div class="admin-modal-content">
+
+                <button
+                    id="closeAccountModal"
+                    class="modal-close"
+                    type="button"
+                >
+                    &times;
+                </button>
+
+                <h2>Account Details</h2>
+
+                <div id="accountDetails"></div>
+
+                <div class="admin-role-controls">
+
+                    <label for="newAccountRole">Account role</label>
+
+                    <select id="newAccountRole">
+                        <option value="student">Student</option>
+                        <option value="admin">Administrator</option>
+                    </select>
+
+                    <button id="saveAccountRole" type="button">
+                        Save Role
+                    </button>
+
+                </div>
+
+                <p id="adminActionMessage" class="muted"></p>
+
+            </div>
+
+        </div>
+
+        <!-- ADMIN FOOTER -->
+        <footer class="site-footer">
+
+            <span>© 2026 CollegeHub. Personal project.</span>
+
+            <div class="footer-links">
+                <a href="about.html">About Us</a>
+                <a href="privacy.html">Privacy Policy</a>
+                <a href="terms.html">Terms of Use</a>
+                <a href="acceptable-use.html">Acceptable Use</a>
+            </div>
+
+        </footer>
+
+    </main>
+
+    <!-- REPORT A BUG MODAL -->
+    <div id="bugReportModal" class="bug-report-modal hidden">
+
+        <div class="bug-report-content">
+
+            <div class="bug-report-header">
+                <div>
+                    <p class="eyebrow">COLLEGEHUB SUPPORT</p>
+                    <h2>Report a Bug</h2>
+                    <p class="muted">Let us know if something isn't working correctly.</p>
+                </div>
+
+                <button
+                    type="button"
+                    id="closeBugReport"
+                    class="modal-close-button"
+                    aria-label="Close"
+                >
+                    &times;
+                </button>
+            </div>
+
+            <form id="bugReportForm">
+
+                <label for="bugCategory">Issue category</label>
+
+                <select id="bugCategory" required>
+                    <option value="">Select a category</option>
+                    <option value="Bug">General Bug</option>
+                    <option value="Layout Issue">Layout Issue</option>
+                    <option value="Performance">Performance Issue</option>
+                    <option value="Login Issue">Login / Account Issue</option>
+                    <option value="Other">Other</option>
+                </select>
+
+                <label for="bugDescription">Describe the issue</label>
+
+                <textarea
+                    id="bugDescription"
+                    rows="6"
+                    maxlength="2000"
+                    required
+                    placeholder="Explain what happened, what you expected to happen and how we can reproduce the issue..."
+                ></textarea>
+
+                <p class="muted bug-character-count">
+                    <span id="bugCharacterCount">0</span>/2000 characters
+                </p>
+
+                <div class="bug-report-actions">
+
+                    <button
+                        type="button"
+                        id="cancelBugReport"
+                        class="secondary-button"
+                    >
+                        Cancel
+                    </button>
+
+                    <button type="submit" id="submitBugReport">
+                        Submit Report
+                    </button>
+
+                </div>
+
+            </form>
+
+        </div>
+
+    </div>
+
+    <!-- SCRIPTS -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="supabase.js"></script>
+    <script src="admin-nav.js"></script>
+    <script src="admin.js"></script>
+    <script src="logout.js"></script>
+    <script src="date-time.js"></script>
+    <script src="bug-report.js"></script>
+    <script src="theme.js"></script>
+
+</body>
+</html>

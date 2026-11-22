@@ -1,0 +1,285 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CollegeHub | Student Performance</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- SIDEBAR -->
+    <aside class="sidebar">
+
+        <h2>CollegeHub<span>.</span></h2>
+        <p class="sidebar-label">MAIN MENU</p>
+
+        <nav>
+            <a href="index.html">⌂ Dashboard</a>
+            <a href="assignments.html">▤ Assignments</a>
+            <a href="calendar.html">▦ Calendar</a>
+            <a href="reminders.html">◷ Reminders</a>
+            <a href="notes.html">▤ Notes</a>
+            <a href="progress.html">▥ Progress</a>
+            <a href="ai-detector.html">⌕ AI Detector</a>
+            <a href="profile.html">♙ My Profile</a>
+            <a hidden href="admin.html">⚙ Admin Panel</a>
+        </nav>
+
+        <button id="logoutButton" class="logout-button">
+            ↪ Logout
+        </button>
+
+        <!-- REPORT A BUG -->
+        <button type="button" id="reportBugButton" class="report-bug-button">
+            <span>⚑</span>
+            Report a Bug
+        </button>
+
+        <div class="sidebar-footer">
+            STUDENT PORTAL<br>
+            <span>Version 2.0</span>
+        </div>
+
+    </aside>
+
+    <!-- MAIN CONTENT -->
+    <main class="main-content">
+
+        <header class="progress-page-header">
+            <div>
+                <p class="eyebrow">STUDENT MANAGEMENT SYSTEM</p>
+                <h1>Student Performance</h1>
+                <p class="muted">
+                    Understand your academic performance and track your progress.
+                </p>
+            </div>
+        </header>
+
+        <!-- PERFORMANCE STATISTICS -->
+        <section class="stats performance-stats">
+
+            <div class="stat-card">
+                <p>ASSIGNMENTS COMPLETED</p>
+                <h2 id="assignmentsCompleted">—</h2>
+            </div>
+
+            <div class="stat-card">
+                <p>COMPLETION RATE</p>
+                <h2 id="completionRate">—</h2>
+            </div>
+
+            <div class="stat-card">
+                <p>AVERAGE GRADE</p>
+                <h2 id="averageGrade">—</h2>
+                <span class="muted">Based on received grades</span>
+            </div>
+
+            <div class="stat-card">
+                <p>ON-TIME SUBMISSIONS</p>
+                <h2 id="onTimeSubmissions">—</h2>
+                <span class="muted">Submission performance</span>
+            </div>
+
+            <div class="stat-card">
+                <p>OVERDUE ASSIGNMENTS</p>
+                <h2 id="overdueAssignments">—</h2>
+                <span class="muted">Outstanding work</span>
+            </div>
+
+        </section>
+
+        <!-- GRADE PERFORMANCE -->
+        <section class="content-card performance-section">
+
+            <div class="section-heading">
+                <div>
+                    <h2>Grade Performance</h2>
+                    <p class="muted">
+                        Explore your grades and how they have changed over time.
+                    </p>
+                </div>
+            </div>
+
+            <div class="performance-grid">
+
+                <div>
+                    <h3>Grade Distribution</h3>
+                    <div id="gradeDistribution">
+                        <p class="muted">Loading grade distribution...</p>
+                    </div>
+                </div>
+
+                <div>
+                    <h3>Grade History</h3>
+                    <div id="gradeHistory">
+                        <p class="muted">Loading grade history...</p>
+                    </div>
+                </div>
+
+            </div>
+
+        </section>
+
+        <!-- SUBJECT AND UNIT PERFORMANCE -->
+        <section class="content-card">
+
+            <h2>Performance by Subject and Unit</h2>
+            <p class="muted">
+                Compare your academic performance across different subjects and coursework units.
+            </p>
+
+            <div id="subjectPerformance">
+                <p class="muted">Loading subject performance...</p>
+            </div>
+
+        </section>
+
+        <!-- ASSIGNMENT COMPLETION TRENDS -->
+        <section class="content-card">
+
+            <h2>Assignment Completion Trends</h2>
+            <p class="muted">
+                See how your assignment completion changes over time.
+            </p>
+
+            <div id="completionTrends">
+                <p class="muted">Loading completion trends...</p>
+            </div>
+
+        </section>
+
+        <!-- UPCOMING DEADLINES -->
+        <section class="content-card">
+
+            <h2>Upcoming Deadlines and Workload</h2>
+            <p class="muted">
+                Keep track of upcoming assignments and outstanding work.
+            </p>
+
+            <div id="upcomingDeadlines">
+                <p class="muted">Loading upcoming deadlines...</p>
+            </div>
+
+        </section>
+
+        <!-- STRENGTHS AND IMPROVEMENTS -->
+        <section class="content-card">
+
+            <h2>Strengths and Areas for Improvement</h2>
+            <p class="muted">
+                Identify subjects where you are performing well and areas that may need attention.
+            </p>
+
+            <div id="strengthsAndImprovements">
+                <p class="muted">Analysing your performance...</p>
+            </div>
+
+        </section>
+
+        <!-- PERSONAL INSIGHTS -->
+        <section class="content-card">
+
+            <h2>Personal Progress Insights</h2>
+            <p class="muted">
+                Helpful observations based on your recorded academic activity.
+            </p>
+
+            <div id="progressInsights">
+                <p class="muted">Generating your progress insights...</p>
+            </div>
+
+        </section>
+
+        <!-- FOOTER -->
+        <footer class="site-footer">
+
+            <span>© 2026 CollegeHub. Personal project.</span>
+
+            <div class="footer-links">
+                <a href="about.html">About Us</a>
+                <a href="privacy.html">Privacy Policy</a>
+                <a href="terms.html">Terms of Use</a>
+                <a href="acceptable-use.html">Acceptable Use</a>
+            </div>
+
+        </footer>
+
+    </main>
+
+    <!-- REPORT A BUG MODAL -->
+    <div id="bugReportModal" class="bug-report-modal hidden">
+
+        <div class="bug-report-content">
+
+            <div class="bug-report-header">
+                <div>
+                    <p class="eyebrow">COLLEGEHUB SUPPORT</p>
+                    <h2>Report a Bug</h2>
+                    <p class="muted">Let us know if something isn't working correctly.</p>
+                </div>
+
+                <button type="button" id="closeBugReport"
+                    class="modal-close-button" aria-label="Close">
+                    &times;
+                </button>
+            </div>
+
+            <form id="bugReportForm">
+
+                <label for="bugCategory">Issue category</label>
+
+                <select id="bugCategory" required>
+                    <option value="">Select a category</option>
+                    <option value="Bug">General Bug</option>
+                    <option value="Layout Issue">Layout Issue</option>
+                    <option value="Performance">Performance Issue</option>
+                    <option value="Login Issue">Login / Account Issue</option>
+                    <option value="Other">Other</option>
+                </select>
+
+                <label for="bugDescription">Describe the issue</label>
+
+                <textarea
+                    id="bugDescription"
+                    rows="6"
+                    maxlength="2000"
+                    required
+                    placeholder="Explain what happened, what you expected to happen and how we can reproduce the issue..."
+                ></textarea>
+
+                <p class="muted bug-character-count">
+                    <span id="bugCharacterCount">0</span>/2000 characters
+                </p>
+
+                <div class="bug-report-actions">
+                    <button type="button" id="cancelBugReport" class="secondary-button">
+                        Cancel
+                    </button>
+
+                    <button type="submit" id="submitBugReport">
+                        Submit Report
+                    </button>
+                </div>
+
+            </form>
+
+        </div>
+
+    </div>
+
+    <!-- JAVASCRIPT -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="supabase.js"></script>
+    <script src="admin-nav.js"></script>
+    <script src="progress.js"></script>
+    <script src="logout.js"></script>
+    <script src="date-time.js"></script>
+    <script src="bug-report.js"></script>
+    <script src="theme.js"></script>
+
+</body>
+</html>

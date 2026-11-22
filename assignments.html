@@ -1,0 +1,384 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CollegeHub | Assignments</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <aside class="sidebar">
+        <h2>CollegeHub<span>.</span></h2>
+        <p class="sidebar-label">MAIN MENU</p>
+
+        <nav>
+            <a href="index.html">⌂ Dashboard</a>
+            <a href="assignments.html" class="active">▤ Assignments</a>
+            <a href="calendar.html">▦ Calendar</a>
+            <a href="reminders.html">◷ Reminders</a>
+            <a href="notes.html">▤ Notes</a>
+            <a href="progress.html">▥ Progress</a>
+            <a href="ai-detector.html">⌕ AI Detector</a>
+            <a href="profile.html">♙ My Profile</a>
+            <a hidden href="admin.html">⚙ Admin Panel</a>
+        </nav>
+
+        <button id="logoutButton" class="logout-button">
+            ↪ Logout
+        </button>
+
+        <!-- REPORT A BUG -->
+        <button type="button" id="reportBugButton" class="report-bug-button">
+            <span>⚑</span>
+            Report a Bug
+        </button>
+
+        <div class="sidebar-footer">
+            STUDENT PORTAL<br>
+            <span>Version 3.0</span>
+        </div>
+    </aside>
+
+    <main class="main-content">
+
+        <header>
+            <div>
+                <p class="eyebrow">STUDENT MANAGEMENT SYSTEM</p>
+                <h1>Assignment Manager</h1>
+                <p class="muted">
+                    Manage your units, assignments, grades and teacher feedback.
+                </p>
+            </div>
+        </header>
+
+        <!-- STATISTICS -->
+        <section class="stats">
+            <div class="stat-card">
+                <p>TOTAL ASSIGNMENTS</p>
+                <h2 id="totalCount">0</h2>
+            </div>
+
+            <div class="stat-card">
+                <p>IN PROGRESS</p>
+                <h2 id="progressCount">0</h2>
+            </div>
+
+            <div class="stat-card">
+                <p>COMPLETED</p>
+                <h2 id="completedCount">0</h2>
+            </div>
+
+            <div class="stat-card">
+                <p>OVERDUE</p>
+                <h2 id="overdueCount">0</h2>
+            </div>
+        </section>
+
+        <!-- UNIT MANAGER -->
+        <section class="content-card" id="unitManager">
+
+            <div class="section-heading">
+                <div>
+                    <h2>Your Units</h2>
+                    <p class="muted">
+                        Select a unit to view its assignments and progress.
+                    </p>
+                </div>
+
+                <button id="addUnitBtn">+ Add Unit</button>
+            </div>
+
+            <div id="unitForm" class="hidden">
+                <h3>Add a coursework unit</h3>
+
+                <form id="newUnit">
+                    <label for="unitName">Unit name</label>
+                    <input type="text" id="unitName"
+                        placeholder="e.g. Unit 15 - UK Airports" required>
+
+                    <label for="unitSubject">Subject</label>
+                    <input type="text" id="unitSubject"
+                        placeholder="e.g. Travel and Tourism" required>
+
+                    <label for="targetGrade">Overall target grade</label>
+                    <select id="targetGrade" required>
+                        <option value="">Select target grade</option>
+                        <option value="Pass">Pass</option>
+                        <option value="Merit">Merit</option>
+                        <option value="Distinction">Distinction</option>
+                    </select>
+
+                    <label for="unitStatus">Unit status</label>
+                    <select id="unitStatus" required>
+                        <option value="Not Started">Not Started</option>
+                        <option value="In Progress">In Progress</option>
+                        <option value="Completed">Completed</option>
+                    </select>
+
+                    <button type="submit">Save Unit</button>
+                </form>
+            </div>
+
+            <div id="unitList">
+                <p class="muted">Loading units...</p>
+            </div>
+
+        </section>
+
+        <!-- UNIT DETAILS -->
+        <section class="content-card hidden" id="unitDetails">
+
+            <div class="section-heading">
+                <div>
+                    <button type="button" id="backToUnitsBtn"
+                        class="secondary-button">
+                        ← Back to Units
+                    </button>
+
+                    <p class="eyebrow" style="margin-top:20px;">
+                        UNIT OVERVIEW
+                    </p>
+
+                    <h2 id="detailUnitName">Unit Name</h2>
+                    <p class="muted" id="detailUnitSubject"></p>
+                </div>
+            </div>
+
+            <div id="unitInformation"></div>
+
+            <div class="unit-progress-section">
+                <h3>Assignment Progress</h3>
+
+                <div class="progress-track">
+                    <div class="progress-fill" id="unitProgressFill"></div>
+                </div>
+
+                <p id="unitProgressText" class="muted">
+                    0 of 0 assignments completed
+                </p>
+            </div>
+
+            <div class="section-heading" style="margin-top:30px;">
+                <div>
+                    <h3>Unit Assignments</h3>
+                    <p class="muted">
+                        All assignments belonging to this unit.
+                    </p>
+                </div>
+
+                <button type="button" id="addUnitAssignmentBtn">
+                    + Add Assignment
+                </button>
+            </div>
+
+            <div id="unitAssignmentList">
+                <p class="muted">No assignments found.</p>
+            </div>
+
+        </section>
+
+        <!-- ASSIGNMENT MANAGER -->
+        <section class="content-card" id="assignmentManager">
+
+            <div class="section-heading">
+                <div>
+                    <h2>Your Assignments</h2>
+                    <p class="muted">
+                        Track deadlines, grades and feedback for each assignment.
+                    </p>
+                </div>
+
+                <button type="button" id="addAssignmentBtn">
+                    + Add Assignment
+                </button>
+            </div>
+
+            <input
+                type="text"
+                id="searchInput"
+                placeholder="Search assignments or units..."
+            >
+
+            <div class="legend">
+                <span><span class="green-dot">●</span> More than 14 days</span>
+                <span><span class="yellow-dot">●</span> 7–14 days</span>
+                <span><span class="red-dot">●</span> Under 7 days / Overdue</span>
+                <span><span style="color:#8191a5;">●</span> Completed</span>
+            </div>
+
+            <!-- ADD ASSIGNMENT FORM -->
+            <div id="assignmentForm" class="hidden">
+                <h3>Add an assignment</h3>
+
+                <form id="newAssignment">
+                    <label for="assignmentTitle">Assignment title</label>
+                    <input type="text" id="assignmentTitle"
+                        placeholder="e.g. Airport Comparison" required>
+
+                    <label for="assignmentUnit">Coursework unit</label>
+                    <select id="assignmentUnit" required>
+                        <option value="">Select a unit</option>
+                        <option value="__no_unit__">No Unit</option>
+                    </select>
+
+                    <label for="assignmentDeadline">Deadline</label>
+                    <input type="date" id="assignmentDeadline" required>
+
+                    <label for="assignmentTarget">Target grade</label>
+                    <select id="assignmentTarget" required>
+                        <option value="">Select target grade</option>
+                        <option value="Pass">Pass</option>
+                        <option value="Merit">Merit</option>
+                        <option value="Distinction">Distinction</option>
+                    </select>
+
+                    <button type="submit">Save Assignment</button>
+                </form>
+            </div>
+
+            <!-- ACTIVE ASSIGNMENTS -->
+            <div id="assignmentList">
+                <p class="muted">Loading assignments...</p>
+            </div>
+
+            <!-- COMPLETED ASSIGNMENTS -->
+            <div class="completed-assignments-section" id="completedAssignmentsSection">
+
+                <button
+                    type="button"
+                    id="toggleCompletedAssignments"
+                    class="completed-assignments-toggle"
+                    aria-expanded="false"
+                    aria-controls="completedAssignmentsContent">
+
+                    <span>
+                        <strong>Completed Assignments</strong>
+                        <span class="muted" id="completedAssignmentsLabel">
+                            View your completed work
+                        </span>
+                    </span>
+
+                    <span class="completed-toggle-icon" id="completedToggleIcon">
+                        ▼
+                    </span>
+                </button>
+
+                <div id="completedAssignmentsContent" class="hidden">
+
+                    <div class="completed-assignments-heading">
+                        <p class="muted">
+                            View, reopen or delete assignments you've completed.
+                        </p>
+                    </div>
+
+                    <div id="completedAssignmentList">
+                        <p class="muted">
+                            Your completed assignments will appear here.
+                        </p>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+        <footer>
+            CollegeHub © 2026 | Student Management System
+        </footer>
+
+        <footer class="site-footer">
+            <span>© 2026 CollegeHub. Personal project.</span>
+
+            <div class="footer-links">
+                <a href="about.html">About Us</a>
+                <a href="privacy.html">Privacy Policy</a>
+                <a href="terms.html">Terms of Use</a>
+                <a href="acceptable-use.html">Acceptable Use</a>
+            </div>
+        </footer>
+
+    </main>
+
+    <!-- REPORT A BUG MODAL -->
+    <div id="bugReportModal" class="bug-report-modal hidden">
+        <div class="bug-report-content">
+
+            <div class="bug-report-header">
+                <div>
+                    <p class="eyebrow">COLLEGEHUB SUPPORT</p>
+                    <h2>Report a Bug</h2>
+                    <p class="muted">
+                        Let us know if something isn't working correctly.
+                    </p>
+                </div>
+
+                <button type="button" id="closeBugReport"
+                    class="modal-close-button" aria-label="Close">
+                    &times;
+                </button>
+            </div>
+
+            <form id="bugReportForm">
+
+                <label for="bugCategory">Issue category</label>
+                <select id="bugCategory" required>
+                    <option value="">Select a category</option>
+                    <option value="Bug">General Bug</option>
+                    <option value="Layout Issue">Layout Issue</option>
+                    <option value="Performance">Performance Issue</option>
+                    <option value="Login Issue">Login / Account Issue</option>
+                    <option value="Other">Other</option>
+                </select>
+
+                <label for="bugDescription">Describe the issue</label>
+                <textarea
+                    id="bugDescription"
+                    rows="6"
+                    maxlength="2000"
+                    required
+                    placeholder="Explain what happened, what you expected to happen and how we can reproduce the issue..."></textarea>
+
+                <p class="muted bug-character-count">
+                    <span id="bugCharacterCount">0</span>/2000 characters
+                </p>
+
+                <div class="bug-report-actions">
+                    <button type="button" id="cancelBugReport"
+                        class="secondary-button">
+                        Cancel
+                    </button>
+
+                    <button type="submit" id="submitBugReport">
+                        Submit Report
+                    </button>
+                </div>
+
+            </form>
+        </div>
+    </div>
+
+    <!-- WEBSITE NOTIFICATIONS -->
+    <div id="collegeHubToast" class="collegehub-toast"
+        role="status" aria-live="polite"></div>
+
+    <div id="collegeHubModalRoot"></div>
+
+    <!-- SCRIPTS -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="supabase.js"></script>
+    <script src="admin-nav.js"></script>
+    <script src="assignments.js"></script>
+    <script src="logout.js"></script>
+    <script src="date-time.js"></script>
+    <script src="bug-report.js"></script>
+<script src="theme.js"></script>
+
+</body>
+</html>
+
+</body>
+</html>
